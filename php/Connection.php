@@ -1,7 +1,7 @@
 <?php
 
 
-$conexion = mysqli_connect("localhost", "root", "Somosmas54321Ds", "Register_User_Login");
+$conexion = mysqli_connect("localhost", "root", "uninpahu", "Register_User_Login");
 
 if ($conexion) {
     echo 'Conectado exiosamente';
