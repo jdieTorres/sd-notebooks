@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
     <!-- Icons -->
-  <script src="https://kit.fontawesome.com/a59d4e3777.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a59d4e3777.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -34,7 +34,7 @@
 
         <!-- Register Form -->
 
-        <form action="php/Registro_L.php" method="POST" class="register-form">
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="register-form">
 
             <div class="form-grid">
                 <label for="mail">Correo:</label>
@@ -59,6 +59,20 @@
             <button type="submit">Registrame</button>
 
         </form>
+
+        <?php
+
+        include 'php/Registro_L.php';
+
+        if (!empty($errores)): ?>
+
+            <div class="error">
+                <ul>
+                    <?php echo $errores; ?>
+                </ul>
+            </div>
+
+        <?php endif; ?>
 
         <!-- To Login -->
 

@@ -130,7 +130,21 @@ body {
     transition-duration: 0.1;
 }
 
+.error{
+    background-color: rgb(255, 148, 148);
+    border: 1px rgb(173, 0, 0) solid;
+    border-radius: 10px;
+    color: rgb(173, 0, 0);
+    font-size: 15px;
+    margin-top: 20px;
+    line-height: 25px;
+    padding: 10px 15px 10px 15px;
+    text-align: justify;
+}
 
+.error ul{
+    list-style: none;
+}
 
 
 
