@@ -1,7 +1,10 @@
-
-*{
+* {
     margin: 0;
     padding: 0;
+}
+
+*:focus {
+    outline: none;
 }
 
 body {
@@ -11,12 +14,12 @@ body {
     background-repeat: no-repeat;
     background-size: 4000px;
     font-family: 'Poppins', sans-serif;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}  
+}
 
 .menu-button {
     background-color: #3a3053;
@@ -43,11 +46,14 @@ body {
     animation: beat 1s infinite alternate;
 }
 
-@keyframes beat{
-	to { transform: scale(1.2); }
+@keyframes beat {
+    to {
+        transform: scale(1.2);
+    }
 }
 
-.login-container, .register-container{
+.login-container,
+.register-container {
     background-color: #e6e6e6;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
     padding: 25px;
@@ -59,13 +65,15 @@ body {
 
 }
 
-.login-container h1, .register-container h1 {
+.login-container h1,
+.register-container h1 {
     color: #3a3053;
     display: inline-block;
     font-size: 30px;
 }
 
-.login-form, .register-form {
+.login-form,
+.register-form {
 
     margin-top: 25px;
 }
@@ -75,7 +83,7 @@ body {
     text-align: left;
 }
 
-.form-grid label{
+.form-grid label {
     display: block;
     font-size: 18px;
     margin-bottom: 7px;
@@ -87,11 +95,19 @@ body {
 .form-grid input {
     border: 1px #3a3053 solid;
     border-radius: 5px;
-    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    padding-left: 15px;
     height: 25px;
+    width: 95%;
 }
 
-.login-form button, .register-form button{
+.form-grid input:focus, select:focus {
+    border: 2.5px #2ed0d2 solid;
+}
+
+.login-form button,
+.register-form button {
     background-color: #3a3053;
     border: none;
     border-radius: 15px;
@@ -108,29 +124,33 @@ body {
     width: 85%;
 }
 
-.login-form button:hover, .register-form button:hover{
+.login-form button:hover,
+.register-form button:hover {
     background-color: #2ed0d2;
     transform: scale(1.05);
     transition-duration: 0.7s;
 }
 
-.login-link, .register-link{
+.login-link,
+.register-link {
     margin-top: 20px;
     text-align: right;
 }
 
-.login-link a, .register-link a{
+.login-link a,
+.register-link a {
 
     color: #3a3053;
     text-decoration: none;
 }
 
-.login-link a:hover, .register-link a:hover{
+.login-link a:hover,
+.register-link a:hover {
     font-weight: bolder;
     transition-duration: 0.1;
 }
 
-.error{
+.error {
     background-color: rgb(255, 148, 148);
     border: 1px rgb(173, 0, 0) solid;
     border-radius: 10px;
@@ -142,13 +162,6 @@ body {
     text-align: justify;
 }
 
-.error ul{
+.error ul {
     list-style: none;
 }
-
-
-
-
-
-
-
