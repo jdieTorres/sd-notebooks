@@ -1,0 +1,5 @@
+ID de cliente
+128535554889-h9315fm5t7r8mgnl9fkmbgatrhh8pfm4.apps.googleusercontent.com
+
+Secreto del cliente
+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

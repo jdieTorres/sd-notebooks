@@ -7,4 +7,4 @@ CREATE TABLE Register (
     contrasena VARCHAR(50) NOT NULL
 );
 
-
+select * from Register;

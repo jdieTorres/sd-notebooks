@@ -165,3 +165,30 @@ body {
 .error ul {
     list-style: none;
 }
+
+.registrado {
+    background-color: rgb(127, 253, 133);
+    border: 1px rgb(4, 110, 0) solid;
+    border-radius: 10px;
+    color: rgb(4, 110, 0);
+    font-size: 20px;
+    margin-top: 18px;
+    padding: 30px 45px 30px 45px;
+}
+
+.registrado i{
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+/*
+button img.google-logo {
+    width: 24px;
+    height: auto;
+    margin-right: 5px;
+}
+*/
+
+
+
+
