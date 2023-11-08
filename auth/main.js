@@ -13,16 +13,16 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+auth.languageCode = 'en';
 
-const Gprovider = new GoogleAuthProvider();
-const Fprovider = new FacebookAuthProvider();
+const provider = new GoogleAuthProvider();
 
 // Login with Google
 const googleLogin = document.getElementById("googleLogin");
 
 googleLogin.addEventListener("click", function () {
 
-  signInWithPopup(auth, Gprovider)
+  signInWithPopup(auth, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const { displayName, email, photoURL, uid } = result.user;
@@ -45,30 +45,29 @@ googleLogin.addEventListener("click", function () {
     });
 })
 
-/*
+  // Login with Facebook
+  const FacebookLogin = document.getElementById("FacebookLogin");
+  FacebookLogin.addEventListener("click", function(){
 
-const FacebookLogin = document.getElementById("FacebookLogin");
-FacebookLogin.addEventListener("click", function () {
-  signInWithPopup(auth, Fprovider)
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
+    const provider = new FacebookAuthProvider();
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const { displayName, email, photoURL, uid } = result.user;
+
+      sessionStorage.setItem('displayName', displayName);
+      sessionStorage.setItem('email', email);
+      sessionStorage.setItem('photoURL', photoURL);
+      sessionStorage.setItem('uid', uid);
+
       window.location.href = "../views/login_view.html";
-
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const accessToken = credential.accessToken;
-    })
-    .catch((error) => {
-      // Handle Errors here.
+    }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = FacebookAuthProvider.credentialFromError(error);
 
-      // ...
+      return {
+        errorMessage
+      }
+
     });
-})
-
-*/
+  });
