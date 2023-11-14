@@ -63,6 +63,9 @@ body {
     text-align: center;
     width: 25%;
 
+    position: absolute;
+    top: 50px;
+
 }
 
 .login-container h1,
@@ -158,6 +161,7 @@ body {
     font-size: 15px;
     margin-top: 20px;
     line-height: 25px;
+    list-style: none;
     padding: 10px 15px 10px 15px;
     text-align: justify;
 }
@@ -181,14 +185,27 @@ body {
     margin-right: 20px;
 }
 
-/*
-button img.google-logo {
+.GoogleButton {
+    margin-top: 15px;
+    
+}
+
+.GoogleButton > img {
     width: 24px;
     height: auto;
     margin-right: 5px;
 }
-*/
 
+.FacebookButton {
+    margin-top: 15px;
+    
+}
+
+.FacebookButton > img {
+    width: 24px;
+    height: auto;
+    margin-right: 5px;
+}
 
 
 

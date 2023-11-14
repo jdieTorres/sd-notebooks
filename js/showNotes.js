@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js"
+import { getFirestore, collection, getDocs, deleteDoc, doc, updateDoc} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js"
 
 const uid = sessionStorage.getItem('uid');
 
@@ -31,27 +31,112 @@ const loadNotes = async (uid = '') => {
 
 const notes = await loadNotes(uid);
 
-notes.forEach(note => {
+const deleteNote = async (uid, noteId) => {
+    await deleteDoc(doc(collection(FirebaseDB, `${uid}/journal/notes`), noteId));
+    const updatedNotes = await loadNotes(uid);
+    updateNotesList(updatedNotes);
+};
 
-    const noteItem = document.createElement("li")
-    noteItem.className = "notes-list-item"
+const updateNote = async (uid, noteId, updatedData) => {
+    await updateDoc(doc(collection(FirebaseDB, `${uid}/journal/notes`), noteId), updatedData); 
+    const updatedNotes = await loadNotes(uid);
+    updateNotesList(updatedNotes);
+};
 
-    const noteIcon = document.createElement("i")
-    noteIcon.className = "fa-regular fa-bookmark"
 
-    const noteTitle = document.createElement("h4")
-    noteTitle.textContent = note.title;
+const renderNotes = (notes) => {
+    document.getElementById("notesList").innerHTML = "";
+    notes.forEach(note => {
+        const noteItem = document.createElement("li");
+        noteItem.className = "notes-list-item";
+    
+        const noteIcon = document.createElement("i");
+        noteIcon.className = "fa-regular fa-bookmark";
+    
+        const noteTitle = document.createElement("h4");
+        noteTitle.textContent = note.title;
+    
+        const noteBody = document.createElement("p");
+        noteBody.textContent = note.body;
+    
+        const deleteButton = document.createElement("button");
+        
+        deleteButton.innerHTML = '<i class="fa-regular fa-trash-can fa-2xl" style="color: #00fffb;"></i>';
+        deleteButton.style.background = "none";
+        deleteButton.style.border = "none";
+        deleteButton.style.padding = "0";
+        deleteButton.style.cursor = "pointer";
 
-    const noteBody = document.createElement("p")
-    noteBody.textContent = note.body
+        deleteButton.addEventListener("click", () => {
+            deleteNote(uid, note.id);
+        });
 
-    noteItem.appendChild(noteIcon)
-    noteItem.appendChild(noteTitle)
-    noteItem.appendChild(noteBody)
 
-    // Agrega el <li> a la lista
-    document.getElementById("notesList").appendChild(noteItem);
+            const updateButton = document.createElement("button");
+        updateButton.innerHTML = '<i class="fa-regular fa-pen-to-square fa-2xl" style="color: #00fffb;"></i>';
+        updateButton.style.background = "none";
+        updateButton.style.border = "none";
+        updateButton.style.padding = "0";
+        updateButton.style.cursor = "pointer";
+
+        updateButton.addEventListener("click", () => {
+        const modal = document.getElementById("updateModal");
+        const updatedTitleInput = document.getElementById("updatedTitle");
+        const updatedBodyInput = document.getElementById("updatedBody");
+
+        updatedTitleInput.value = note.title;
+        updatedBodyInput.value = note.body;
+
+        modal.style.display = "block";
+    
+        const saveChangesButton = document.getElementById("saveChanges");
+        saveChangesButton.addEventListener("click", () => {
+            const updatedTitle = document.getElementById("updatedTitle").value;
+            const updatedBody = document.getElementById("updatedBody").value;
+        
+            if (updatedTitle.trim() !== "" && updatedBody.trim() !== "") {
+                updateNote(uid, note.id, { title: updatedTitle, body: updatedBody });
+                const modal = document.getElementById("updateModal");
+                modal.style.display = "none";
+            } else {
+                alert("Por favor, complete todos los campos.");
+            }
+        });
+        });
+        
+    
+        noteItem.appendChild(noteIcon);
+        noteItem.appendChild(noteTitle);
+        noteItem.appendChild(noteBody);
+        noteItem.appendChild(deleteButton);
+        noteItem.appendChild(updateButton);
+    
+        document.getElementById("notesList").appendChild(noteItem);
+    });
+};
+
+
+const updateNotesList = (updatedNotes) => {
+    renderNotes(updatedNotes);
+};
+
+renderNotes(notes);
+
+const closeModalButton = document.getElementById("closeModal");
+
+closeModalButton.addEventListener("click", () => {
+    const modal = document.getElementById("updateModal");
+    modal.style.display = "none";
 });
+
+window.addEventListener("click", (event) => {
+    const modal = document.getElementById("updateModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+
 
 /*notes.forEach(note => {
 

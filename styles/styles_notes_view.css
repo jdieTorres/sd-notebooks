@@ -80,7 +80,9 @@ h6 {
     margin-bottom: 10px;
     padding-bottom: 10px;
     overflow-x: hidden !important;
+    
 }
+
 
 .notes-list-item i{
     display: block;
@@ -165,6 +167,7 @@ h6 {
     font-size: 20px;
     margin-top: 10px;
     padding: 10px 0px 10px 15px;
+    box-shadow: 0 0 20px rgb(168, 255, 255);
 }
 
 .main-note-form input[placeholder="Titulo"]{
@@ -173,12 +176,14 @@ h6 {
 
 .main-note-form textarea{
     border-radius: 5px;
-    color: black;
+    background-color: rgb(255, 255, 255);
     font-family: 'Poppins', sans-serif;
     height: 315px;
-    margin-top: 30px;
+    width: auto;
+    margin-top: 80px;
     padding: 10px 0px 10px 15px;
     resize: none;
+    box-shadow: 0 0 20px rgb(168, 255, 255);
 }
 
 .main-note-form input:focus, select:focus, textarea:focus {
@@ -214,3 +219,5 @@ h6 {
         transform: scale(1.2);
     }
 }
+
+
